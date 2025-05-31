@@ -12,8 +12,8 @@ const Header: React.FC = () => {
             <Map size={28} className="shadow-glow-blue" />
           </div>
           <div>
-            <h1 className="text-xl font-bold text-white">RaceStars</h1>
-            <p className="text-xs text-gray-400">Conquer the map. Rule the streets.</p>
+            <h1 className="text-xl font-bold text-white">NFSCO: Crew Battles</h1>
+            <p className="text-xs text-gray-400">Build your crew. Conquer Palmont City.</p>
           </div>
         </div>
         
