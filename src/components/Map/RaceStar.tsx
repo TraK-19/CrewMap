@@ -37,7 +37,7 @@ const RaceStar: React.FC<RaceStarProps> = ({
     >
       {/* Main star icon */}
       <div 
-        className="w-8 h-8 relative flex items-center justify-center transition-all duration-300"
+        className="w-6 h-6 relative flex items-center justify-center transition-all duration-300"
         style={{ 
           color: starColor,
           opacity: starOpacity,
@@ -50,7 +50,7 @@ const RaceStar: React.FC<RaceStarProps> = ({
         {ownerCrew && (
           <div className="absolute -bottom-1 -right-1 bg-gray-900 rounded-full p-0.5 border-2" 
                style={{ borderColor: ownerCrew.themeColor }}>
-            <ArrowUpCircle size={12} style={{ color: ownerCrew.themeColor }} />
+            <ArrowUpCircle size={6} style={{ color: ownerCrew.themeColor }} />
           </div>
         )}
       </div>
