@@ -3,43 +3,75 @@ import { Crew, RaceStar } from '../types';
 export const crews: Crew[] = [
   {
     id: 'crew-1',
-    name: 'Neon Drifters',
-    themeColor: '#FF36AB', // Neon pink
-    memberCount: 32,
+    name: 'Roads Unlimited',
+    themeColor: '#969696',
+    memberCount: 9,
     conqueredStars: 12,
-    description: 'Masters of the night streets, known for their flashy cars and perfect drifting techniques.'
+    description: 'Masters of the streets, known for their precision driving and tactical racing.'
   },
   {
     id: 'crew-2',
-    name: 'Velocity Demons',
-    themeColor: '#3B82F6', // Blue
-    memberCount: 28,
+    name: 'Walkers',
+    themeColor: '#ffc900',
+    memberCount: 7,
     conqueredStars: 8,
-    description: 'Speed is their religion. They dominate straight-line races and high-speed circuits.'
+    description: 'Speed demons who rule the night, leaving their mark on every street they conquer.'
   },
   {
     id: 'crew-3',
-    name: 'Off-Grid Rebels',
-    themeColor: '#10B981', // Green
-    memberCount: 18,
+    name: 'The ACES',
+    themeColor: '#001f8d',
+    memberCount: 7,
     conqueredStars: 6,
-    description: 'No road is too rough. They specialize in off-road racing and wilderness navigation.'
+    description: 'Elite racers who dominate with skill and strategy.'
   },
   {
     id: 'crew-4',
-    name: 'Asphalt Monarchs',
-    themeColor: '#F59E0B', // Amber
-    memberCount: 24,
+    name: 'Speed Of Light',
+    themeColor: '#fcff92',
+    memberCount: 9,
     conqueredStars: 10,
-    description: 'The original street kings, respected by all for their technical precision and class.'
+    description: 'Lightning-fast racers who strike before you even see them coming.'
   },
   {
     id: 'crew-5',
-    name: 'Midnight Phantoms',
-    themeColor: '#8B5CF6', // Purple
-    memberCount: 15,
+    name: 'Void Cascade',
+    themeColor: '#810db6',
+    memberCount: 5,
     conqueredStars: 5,
-    description: 'Mysterious and elusive, they appear only at night and vanish before dawn.'
+    description: 'Masters of the shadows, they emerge only to claim victory.'
+  },
+  {
+    id: 'crew-6',
+    name: 'Ex-Machina',
+    themeColor: '#00ffe5',
+    memberCount: 2,
+    conqueredStars: 0,
+    description: 'Tech-savvy racers who merge machine precision with human instinct.'
+  },
+  {
+    id: 'crew-7',
+    name: 'The Impostors',
+    themeColor: '#ff0000',
+    memberCount: 2,
+    conqueredStars: 0,
+    description: 'Mysterious newcomers with unpredictable tactics and hidden agendas.'
+  },
+  {
+    id: 'crew-8',
+    name: 'Grayhats',
+    themeColor: '#555555',
+    memberCount: 6,
+    conqueredStars: 0,
+    description: 'Operating in the moral gray area, these skilled hackers turned street racers never play by the rules.'
+  },
+  {
+    id: 'crew-9',
+    name: 'Red Knights',
+    themeColor: '#aa0004',
+    memberCount: 1,
+    conqueredStars: 0,
+    description: 'A lone wolf with the skill and determination to challenge entire crews.'
   }
 ];
 
@@ -47,7 +79,6 @@ export const crews: Crew[] = [
 export const generateRaceStars = (): RaceStar[] => {
   const stars: RaceStar[] = [];
   const types: Array<'sprint' | 'circuit' | 'drift' | 'drag' | 'offroad'> = ['sprint', 'circuit', 'drift', 'drag', 'offroad'];
-  const difficulties: Array<'easy' | 'medium' | 'hard' | 'extreme'> = ['easy', 'medium', 'hard', 'extreme'];
   
   // Assign some stars to crews
   const crewAssignments = {
@@ -70,10 +101,9 @@ export const generateRaceStars = (): RaceStar[] => {
       id: starId,
       name: `Race ${i + 1}`,
       position: {
-        x: 100 + Math.random() * 800, // Spread across the 1000x600 map
+        x: 100 + Math.random() * 800,
         y: 100 + Math.random() * 400,
       },
-      difficulty: difficulties[Math.floor(Math.random() * difficulties.length)],
       type: types[Math.floor(Math.random() * types.length)],
       conqueredBy: crewAssignments[starId as keyof typeof crewAssignments],
       rewardPoints: 100 + Math.floor(Math.random() * 400),

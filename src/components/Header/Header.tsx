@@ -24,20 +24,10 @@ const Header: React.FC = () => {
           <NavLink icon={<Users size={16} />}>Crews</NavLink>
         </nav>
         
-        {/* User/Actions */}
-        <div className="flex items-center">
-          <Button 
-            variant="primary" 
-            size="sm"
-            className="hidden sm:flex"
-          >
-            Sign In
-          </Button>
-          
-          <button className="md:hidden ml-4 p-1 text-gray-400 hover:text-white">
-            <MenuSquare size={24} />
-          </button>
-        </div>
+        {/* Mobile menu button */}
+        <button className="md:hidden p-1 text-gray-400 hover:text-white">
+          <MenuSquare size={24} />
+        </button>
       </div>
     </header>
   );

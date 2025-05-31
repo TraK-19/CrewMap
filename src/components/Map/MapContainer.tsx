@@ -3,9 +3,9 @@ import { useGame } from '../../context/GameContext';
 import RaceStar from './RaceStar';
 import MapControls from './MapControls';
 
-const MAP_WIDTH = 1000;
-const MAP_HEIGHT = 600;
-const MIN_ZOOM = 0.5;
+const MAP_WIDTH = 2048; // Updated to match typical map dimensions
+const MAP_HEIGHT = 2048;
+const MIN_ZOOM = 0.25;
 const MAX_ZOOM = 2;
 const ZOOM_STEP = 0.1;
 
@@ -25,32 +25,27 @@ const MapContainer: React.FC = () => {
   const [showFilters, setShowFilters] = useState(false);
   const mapRef = useRef<HTMLDivElement>(null);
   
-  // Handle zoom in
   const handleZoomIn = () => {
     if (mapViewport.zoom < MAX_ZOOM) {
       updateMapViewport({ zoom: mapViewport.zoom + ZOOM_STEP });
     }
   };
   
-  // Handle zoom out
   const handleZoomOut = () => {
     if (mapViewport.zoom > MIN_ZOOM) {
       updateMapViewport({ zoom: mapViewport.zoom - ZOOM_STEP });
     }
   };
   
-  // Reset the map view
   const handleReset = () => {
-    updateMapViewport({ x: 0, y: 0, zoom: 1 });
+    updateMapViewport({ x: 0, y: 0, zoom: 0.5 }); // Default to show more of the map
   };
   
-  // Handle mouse down for dragging
   const handleMouseDown = (e: React.MouseEvent) => {
     setIsDragging(true);
     setDragStart({ x: e.clientX - mapViewport.x, y: e.clientY - mapViewport.y });
   };
   
-  // Handle mouse move for dragging
   const handleMouseMove = (e: React.MouseEvent) => {
     if (isDragging) {
       updateMapViewport({
@@ -60,31 +55,25 @@ const MapContainer: React.FC = () => {
     }
   };
   
-  // Handle mouse up to end dragging
   const handleMouseUp = () => {
     setIsDragging(false);
   };
   
-  // Handle star click
   const handleStarClick = (star: typeof raceStars[0]) => {
     setSelectedStar(selectedStar?.id === star.id ? null : star);
   };
   
-  // Handle clicking outside to deselect
   const handleMapClick = (e: React.MouseEvent) => {
-    // Only deselect if clicking directly on the map background
     if (e.target === e.currentTarget) {
       setSelectedStar(null);
     }
   };
   
-  // Toggle filters panel
   const toggleFilters = () => {
     setShowFilters(!showFilters);
   };
   
   useEffect(() => {
-    // Add global mouse event listeners for dragging outside the map
     const handleGlobalMouseMove = (e: MouseEvent) => {
       if (isDragging) {
         updateMapViewport({
@@ -129,16 +118,21 @@ const MapContainer: React.FC = () => {
             height: MAP_HEIGHT,
             transform: `translate(${mapViewport.x}px, ${mapViewport.y}px) scale(${mapViewport.zoom})`,
             transformOrigin: 'center',
-            backgroundImage: `
-              radial-gradient(circle at 10px 10px, rgba(59, 130, 246, 0.1) 2px, transparent 0), 
-              linear-gradient(rgba(31, 41, 55, 0.7) 1px, transparent 1px), 
-              linear-gradient(90deg, rgba(31, 41, 55, 0.7) 1px, transparent 1px)
-            `,
-            backgroundSize: '40px 40px, 100px 100px, 100px 100px',
-            backgroundPosition: '0 0, 0 0, 0 0',
-            boxShadow: 'inset 0 0 100px rgba(59, 130, 246, 0.2)'
+            backgroundImage: `url('https://cdn.discordapp.com/attachments/1354442171545293000/1376263365277646938/CB_Map_Grayed_UPDATED_25.png?ex=683b4824&is=6839f6a4&hm=0e0540e47988d661d0a2a9a6ffd1cb36c4b6620004d2db41f9782d0392aec6e8&')`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
           }}
         >
+          {/* Map overlay for better visibility */}
+          <div 
+            className="absolute inset-0"
+            style={{
+              background: 'linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3))',
+              boxShadow: 'inset 0 0 200px rgba(0,0,0,0.5)'
+            }}
+          />
+          
           {/* Render all filtered race stars */}
           {filteredStars.map((star) => (
             <RaceStar
@@ -147,12 +141,9 @@ const MapContainer: React.FC = () => {
               crews={crews}
               isSelected={selectedStar?.id === star.id}
               onClick={() => handleStarClick(star)}
-              scale={1 / mapViewport.zoom} // Maintain size regardless of zoom
+              scale={1 / mapViewport.zoom}
             />
           ))}
-          
-          {/* Map borders with glow effect */}
-          <div className="absolute inset-0 pointer-events-none border-2 border-blue-500 opacity-30 rounded shadow-glow-blue"></div>
         </div>
       </div>
       

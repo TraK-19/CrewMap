@@ -20,20 +20,9 @@ const RaceStar: React.FC<RaceStarProps> = ({
   // Find the crew that has conquered this star
   const ownerCrew = crews.find(crew => crew.id === star.conqueredBy);
   
-  // Determine color based on race type
-  const getTypeColor = () => {
-    switch(star.type) {
-      case 'sprint': return '#3B82F6'; // Blue
-      case 'circuit': return '#10B981'; // Green
-      case 'drift': return '#FF36AB';  // Pink
-      case 'drag': return '#F59E0B';   // Amber
-      case 'offroad': return '#8B5CF6'; // Purple
-      default: return '#3B82F6';
-    }
-  };
-
-  const starColor = ownerCrew ? ownerCrew.themeColor : getTypeColor();
-  const starOpacity = ownerCrew ? '1' : '0.6';
+  // Determine color based on ownership
+  const starColor = ownerCrew ? ownerCrew.themeColor : '#FFFFFF';
+  const starOpacity = ownerCrew ? '1' : '1';
 
   return (
     <div 
