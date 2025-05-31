@@ -49,7 +49,7 @@ const Sidebar: React.FC = () => {
           </div>
           <div className="flex items-center">
             <Map size={14} className="mr-1 text-blue-500" />
-            <span>5 Crews Active</span>
+            <span>9 Crews Active</span>
           </div>
         </div>
       </div>
