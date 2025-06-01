@@ -28,20 +28,34 @@ const MapContainer: React.FC = () => {
   
   // Set initial fullscreen viewport
   useEffect(() => {
-    if (mapRef.current) {
-      const containerWidth = mapRef.current.clientWidth;
-      const containerHeight = mapRef.current.clientHeight;
-      const scale = Math.min(containerWidth / MAP_WIDTH, containerHeight / MAP_HEIGHT);
-      const initialZoom = Math.max(scale * 1.5, MIN_ZOOM); // 1.5x scale for better visibility
-      const centerX = (containerWidth - MAP_WIDTH * initialZoom) / 2;
-      const centerY = (containerHeight - MAP_HEIGHT * initialZoom) / 2;
-      
-      updateMapViewport({
-        x: centerX,
-        y: centerY,
-        zoom: initialZoom
-      });
-    }
+    const initializeMap = () => {
+      if (mapRef.current) {
+        const containerWidth = mapRef.current.clientWidth;
+        const containerHeight = mapRef.current.clientHeight;
+        
+        const scaleX = containerWidth / MAP_WIDTH;
+        const scaleY = containerHeight / MAP_HEIGHT;
+        const scale = Math.min(scaleX, scaleY);
+        
+        const initialZoom = Math.max(scale * 1.5, MIN_ZOOM);
+        const scaledMapWidth = MAP_WIDTH * initialZoom;
+        const scaledMapHeight = MAP_HEIGHT * initialZoom;
+        const centerX = (containerWidth - scaledMapWidth) / 2;
+        const centerY = (containerHeight - scaledMapHeight) / 2;
+        
+        requestAnimationFrame(() => {
+          updateMapViewport({
+            x: centerX,
+            y: centerY,
+            zoom: initialZoom
+          });
+        });
+      }
+    };
+
+    initializeMap();
+    window.addEventListener('resize', initializeMap);
+    return () => window.removeEventListener('resize', initializeMap);
   }, []);
   
   const handleZoomIn = () => {
@@ -60,10 +74,16 @@ const MapContainer: React.FC = () => {
     if (mapRef.current) {
       const containerWidth = mapRef.current.clientWidth;
       const containerHeight = mapRef.current.clientHeight;
-      const scale = Math.min(containerWidth / MAP_WIDTH, containerHeight / MAP_HEIGHT);
+      
+      const scaleX = containerWidth / MAP_WIDTH;
+      const scaleY = containerHeight / MAP_HEIGHT;
+      const scale = Math.min(scaleX, scaleY);
+      
       const initialZoom = Math.max(scale * 1.5, MIN_ZOOM);
-      const centerX = (containerWidth - MAP_WIDTH * initialZoom) / 2;
-      const centerY = (containerHeight - MAP_HEIGHT * initialZoom) / 2;
+      const scaledMapWidth = MAP_WIDTH * initialZoom;
+      const scaledMapHeight = MAP_HEIGHT * initialZoom;
+      const centerX = (containerWidth - scaledMapWidth) / 2;
+      const centerY = (containerHeight - scaledMapHeight) / 2;
       
       updateMapViewport({
         x: centerX,
@@ -80,9 +100,11 @@ const MapContainer: React.FC = () => {
   
   const handleMouseMove = (e: React.MouseEvent) => {
     if (isDragging) {
-      updateMapViewport({
-        x: e.clientX - dragStart.x,
-        y: e.clientY - dragStart.y
+      requestAnimationFrame(() => {
+        updateMapViewport({
+          x: e.clientX - dragStart.x,
+          y: e.clientY - dragStart.y
+        });
       });
     }
   };
@@ -99,7 +121,6 @@ const MapContainer: React.FC = () => {
         y: e.touches[0].clientY - mapViewport.y
       });
     } else if (e.touches.length === 2) {
-      // Store the initial distance between two fingers for pinch zoom
       const distance = Math.hypot(
         e.touches[0].clientX - e.touches[1].clientX,
         e.touches[0].clientY - e.touches[1].clientY
@@ -109,25 +130,28 @@ const MapContainer: React.FC = () => {
   };
   
   const handleTouchMove = (e: React.TouchEvent) => {
-    e.preventDefault(); // Prevent default scrolling
+    e.preventDefault();
     
     if (e.touches.length === 1 && isDragging) {
-      updateMapViewport({
-        x: e.touches[0].clientX - dragStart.x,
-        y: e.touches[0].clientY - dragStart.y
+      requestAnimationFrame(() => {
+        updateMapViewport({
+          x: e.touches[0].clientX - dragStart.x,
+          y: e.touches[0].clientY - dragStart.y
+        });
       });
     } else if (e.touches.length === 2) {
-      // Handle pinch zoom
       const distance = Math.hypot(
         e.touches[0].clientX - e.touches[1].clientX,
         e.touches[0].clientY - e.touches[1].clientY
       );
       
       const delta = distance - lastTouchDistance;
-      const zoomDelta = delta * 0.01; // Adjust sensitivity as needed
+      const zoomDelta = delta * 0.005; // Reduced sensitivity
       
-      const newZoom = Math.min(Math.max(mapViewport.zoom + zoomDelta, MIN_ZOOM), MAX_ZOOM);
-      updateMapViewport({ zoom: newZoom });
+      requestAnimationFrame(() => {
+        const newZoom = Math.min(Math.max(mapViewport.zoom + zoomDelta, MIN_ZOOM), MAX_ZOOM);
+        updateMapViewport({ zoom: newZoom });
+      });
       
       setLastTouchDistance(distance);
     }
@@ -157,7 +181,7 @@ const MapContainer: React.FC = () => {
       {/* Map backdrop */}
       <div 
         ref={mapRef}
-        className="absolute w-full h-full cursor-grab touch-none"
+        className="absolute w-full h-full cursor-grab touch-none will-change-transform"
         style={{ 
           cursor: isDragging ? 'grabbing' : 'grab',
         }}
@@ -171,11 +195,11 @@ const MapContainer: React.FC = () => {
       >
         {/* Map container with transformation */}
         <div 
-          className="absolute top-1/2 left-1/2 transform transition-transform duration-75 ease-linear"
+          className="absolute top-1/2 left-1/2 will-change-transform"
           style={{ 
             width: MAP_WIDTH,
             height: MAP_HEIGHT,
-            transform: `translate(${mapViewport.x}px, ${mapViewport.y}px) scale(${mapViewport.zoom})`,
+            transform: `translate3d(${mapViewport.x}px, ${mapViewport.y}px, 0) scale(${mapViewport.zoom})`,
             transformOrigin: 'center',
             backgroundImage: `url('https://cdn.discordapp.com/attachments/1354442171545293000/1378567019640918057/CB_Map_Grayed_UPDATED_31.png?ex=683dbad6&is=683c6956&hm=a7c3d1e6742d294b01783f7ea6f035b5b6e9176aa4d9ce0165d499d8010f7b8f&')`,
             backgroundSize: 'cover',
