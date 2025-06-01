@@ -3,7 +3,7 @@ import { useGame } from '../../context/GameContext';
 import RaceStar from './RaceStar';
 import MapControls from './MapControls';
 
-const MAP_WIDTH = 2048; // Updated to match typical map dimensions
+const MAP_WIDTH = 2048;
 const MAP_HEIGHT = 2048;
 const MIN_ZOOM = 0.25;
 const MAX_ZOOM = 2;
@@ -23,7 +23,26 @@ const MapContainer: React.FC = () => {
   const [isDragging, setIsDragging] = useState(false);
   const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
   const [showFilters, setShowFilters] = useState(false);
+  const [lastTouchDistance, setLastTouchDistance] = useState(0);
   const mapRef = useRef<HTMLDivElement>(null);
+  
+  // Set initial fullscreen viewport
+  useEffect(() => {
+    if (mapRef.current) {
+      const containerWidth = mapRef.current.clientWidth;
+      const containerHeight = mapRef.current.clientHeight;
+      const scale = Math.min(containerWidth / MAP_WIDTH, containerHeight / MAP_HEIGHT);
+      const initialZoom = Math.max(scale * 1.5, MIN_ZOOM); // 1.5x scale for better visibility
+      const centerX = (containerWidth - MAP_WIDTH * initialZoom) / 2;
+      const centerY = (containerHeight - MAP_HEIGHT * initialZoom) / 2;
+      
+      updateMapViewport({
+        x: centerX,
+        y: centerY,
+        zoom: initialZoom
+      });
+    }
+  }, []);
   
   const handleZoomIn = () => {
     if (mapViewport.zoom < MAX_ZOOM) {
@@ -38,7 +57,20 @@ const MapContainer: React.FC = () => {
   };
   
   const handleReset = () => {
-    updateMapViewport({ x: 0, y: 0, zoom: 0.5 }); // Default to show more of the map
+    if (mapRef.current) {
+      const containerWidth = mapRef.current.clientWidth;
+      const containerHeight = mapRef.current.clientHeight;
+      const scale = Math.min(containerWidth / MAP_WIDTH, containerHeight / MAP_HEIGHT);
+      const initialZoom = Math.max(scale * 1.5, MIN_ZOOM);
+      const centerX = (containerWidth - MAP_WIDTH * initialZoom) / 2;
+      const centerY = (containerHeight - MAP_HEIGHT * initialZoom) / 2;
+      
+      updateMapViewport({
+        x: centerX,
+        y: centerY,
+        zoom: initialZoom
+      });
+    }
   };
   
   const handleMouseDown = (e: React.MouseEvent) => {
@@ -59,6 +91,53 @@ const MapContainer: React.FC = () => {
     setIsDragging(false);
   };
   
+  const handleTouchStart = (e: React.TouchEvent) => {
+    if (e.touches.length === 1) {
+      setIsDragging(true);
+      setDragStart({
+        x: e.touches[0].clientX - mapViewport.x,
+        y: e.touches[0].clientY - mapViewport.y
+      });
+    } else if (e.touches.length === 2) {
+      // Store the initial distance between two fingers for pinch zoom
+      const distance = Math.hypot(
+        e.touches[0].clientX - e.touches[1].clientX,
+        e.touches[0].clientY - e.touches[1].clientY
+      );
+      setLastTouchDistance(distance);
+    }
+  };
+  
+  const handleTouchMove = (e: React.TouchEvent) => {
+    e.preventDefault(); // Prevent default scrolling
+    
+    if (e.touches.length === 1 && isDragging) {
+      updateMapViewport({
+        x: e.touches[0].clientX - dragStart.x,
+        y: e.touches[0].clientY - dragStart.y
+      });
+    } else if (e.touches.length === 2) {
+      // Handle pinch zoom
+      const distance = Math.hypot(
+        e.touches[0].clientX - e.touches[1].clientX,
+        e.touches[0].clientY - e.touches[1].clientY
+      );
+      
+      const delta = distance - lastTouchDistance;
+      const zoomDelta = delta * 0.01; // Adjust sensitivity as needed
+      
+      const newZoom = Math.min(Math.max(mapViewport.zoom + zoomDelta, MIN_ZOOM), MAX_ZOOM);
+      updateMapViewport({ zoom: newZoom });
+      
+      setLastTouchDistance(distance);
+    }
+  };
+  
+  const handleTouchEnd = () => {
+    setIsDragging(false);
+    setLastTouchDistance(0);
+  };
+  
   const handleStarClick = (star: typeof raceStars[0]) => {
     setSelectedStar(selectedStar?.id === star.id ? null : star);
   };
@@ -73,41 +152,21 @@ const MapContainer: React.FC = () => {
     setShowFilters(!showFilters);
   };
   
-  useEffect(() => {
-    const handleGlobalMouseMove = (e: MouseEvent) => {
-      if (isDragging) {
-        updateMapViewport({
-          x: e.clientX - dragStart.x,
-          y: e.clientY - dragStart.y
-        });
-      }
-    };
-    
-    const handleGlobalMouseUp = () => {
-      setIsDragging(false);
-    };
-    
-    window.addEventListener('mousemove', handleGlobalMouseMove);
-    window.addEventListener('mouseup', handleGlobalMouseUp);
-    
-    return () => {
-      window.removeEventListener('mousemove', handleGlobalMouseMove);
-      window.removeEventListener('mouseup', handleGlobalMouseUp);
-    };
-  }, [isDragging, dragStart, updateMapViewport]);
-  
   return (
     <div className="relative w-full h-full overflow-hidden rounded-lg border border-gray-800 bg-gray-900">
       {/* Map backdrop */}
       <div 
         ref={mapRef}
-        className="absolute w-full h-full cursor-grab"
+        className="absolute w-full h-full cursor-grab touch-none"
         style={{ 
           cursor: isDragging ? 'grabbing' : 'grab',
         }}
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
         onClick={handleMapClick}
       >
         {/* Map container with transformation */}
