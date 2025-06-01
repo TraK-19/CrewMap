@@ -10,7 +10,8 @@ function App() {
       <div className="flex flex-col h-screen bg-gray-950 text-gray-200 overflow-hidden">
         <Header />
         
-        <div className="flex flex-1 overflow-hidden relative">
+        <div className="absolute md:relative w-full md:w-80 h-full transform translate-x-full md:translate-x-0 transition-transform duration-300 ease-in-out"
+  id="sidebar-container">
           {/* Main content - Map */}
           <div className="flex-1 p-2 md:p-4 overflow-hidden">
             <MapContainer />
