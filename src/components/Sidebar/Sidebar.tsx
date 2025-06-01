@@ -2,7 +2,8 @@ import React from 'react';
 import { useGame } from '../../context/GameContext';
 import CrewCard from './CrewCard';
 import CrewDetails from './CrewDetails';
-import { Search, Trophy, Map } from 'lucide-react';
+import { Search, Trophy, Map, X } from 'lucide-react';
+import Button from '../UI/Button';
 
 const Sidebar: React.FC = () => {
   const { crews, selectedCrew, setSelectedCrew } = useGame();
@@ -10,12 +11,29 @@ const Sidebar: React.FC = () => {
   const handleCrewClick = (crew: typeof crews[0]) => {
     setSelectedCrew(selectedCrew?.id === crew.id ? null : crew);
   };
+
+  const closeSidebar = () => {
+    const sidebar = document.getElementById('sidebar-container');
+    if (sidebar) {
+      sidebar.style.transform = 'translateX(100%)';
+    }
+  };
   
   return (
     <div className="h-full flex flex-col bg-gray-900 border-l border-gray-800">
       {/* Header */}
       <div className="p-4 border-b border-gray-800">
-        <h2 className="text-lg font-bold text-white mb-4">Racing Crews</h2>
+        <div className="flex items-center justify-between mb-4">
+          <h2 className="text-lg font-bold text-white">Racing Crews</h2>
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={closeSidebar}
+            className="md:hidden w-8 h-8 flex items-center justify-center"
+          >
+            <X size={20} />
+          </Button>
+        </div>
         
         {/* Search bar */}
         <div className="relative">

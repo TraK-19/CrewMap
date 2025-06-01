@@ -1,5 +1,5 @@
 import React from 'react';
-import { ZoomIn, ZoomOut, RotateCcw, Filter } from 'lucide-react';
+import { ZoomIn, ZoomOut, RotateCcw, Filter, Users } from 'lucide-react';
 import Button from '../UI/Button';
 import { useGame } from '../../context/GameContext';
 
@@ -20,50 +20,70 @@ const MapControls: React.FC<MapControlsProps> = ({
 }) => {
   const { resetFilters } = useGame();
   
+  const toggleSidebar = () => {
+    const sidebar = document.getElementById('sidebar-container');
+    if (sidebar) {
+      const isHidden = sidebar.style.transform === 'translateX(100%)' || !sidebar.style.transform;
+      sidebar.style.transform = isHidden ? 'translateX(0)' : 'translateX(100%)';
+    }
+  };
+  
   return (
-    <div className="absolute bottom-6 right-6 flex flex-col gap-2 p-2 bg-gray-900 bg-opacity-60 backdrop-blur-sm rounded-lg border border-gray-800 z-30">
-      <Button 
-        variant="ghost" 
-        size="sm" 
-        onClick={onZoomIn}
-        className="w-9 h-9 flex items-center justify-center"
-      >
-        <ZoomIn size={18} />
-      </Button>
-      
-      <Button 
-        variant="ghost" 
-        size="sm" 
-        onClick={onZoomOut}
-        className="w-9 h-9 flex items-center justify-center"
-      >
-        <ZoomOut size={18} />
-      </Button>
-      
-      <div className="w-full h-px bg-gray-800 my-1"></div>
-      
-      <Button 
-        variant="ghost" 
+    <div className="absolute bottom-6 right-6 flex flex-col gap-2">
+      {/* Mobile Crews button */}
+      <Button
+        variant="ghost"
         size="sm"
-        onClick={onReset}
-        className="w-9 h-9 flex items-center justify-center"
+        onClick={toggleSidebar}
+        className="md:hidden w-9 h-9 flex items-center justify-center bg-gray-900 bg-opacity-60 backdrop-blur-sm rounded-lg border border-gray-800"
       >
-        <RotateCcw size={18} />
+        <Users size={18} />
       </Button>
-      
-      <div className="w-full h-px bg-gray-800 my-1"></div>
-      
-      <Button 
-        variant={showFilters ? "secondary" : "ghost"}
-        size="sm"
-        onClick={onFilterClick}
-        className="w-9 h-9 flex items-center justify-center"
-      >
-        <Filter size={18} />
-      </Button>
+
+      <div className="flex flex-col gap-2 p-2 bg-gray-900 bg-opacity-60 backdrop-blur-sm rounded-lg border border-gray-800 z-30">
+        <Button 
+          variant="ghost" 
+          size="sm" 
+          onClick={onZoomIn}
+          className="w-9 h-9 flex items-center justify-center"
+        >
+          <ZoomIn size={18} />
+        </Button>
+        
+        <Button 
+          variant="ghost" 
+          size="sm" 
+          onClick={onZoomOut}
+          className="w-9 h-9 flex items-center justify-center"
+        >
+          <ZoomOut size={18} />
+        </Button>
+        
+        <div className="w-full h-px bg-gray-800 my-1"></div>
+        
+        <Button 
+          variant="ghost" 
+          size="sm"
+          onClick={onReset}
+          className="w-9 h-9 flex items-center justify-center"
+        >
+          <RotateCcw size={18} />
+        </Button>
+        
+        <div className="w-full h-px bg-gray-800 my-1"></div>
+        
+        <Button 
+          variant={showFilters ? "secondary" : "ghost"}
+          size="sm"
+          onClick={onFilterClick}
+          className="w-9 h-9 flex items-center justify-center"
+        >
+          <Filter size={18} />
+        </Button>
+      </div>
       
       {showFilters && (
-        <div className="absolute right-12 bottom-0 p-3 bg-gray-900 border border-gray-800 rounded-lg shadow-lg w-48">
+        <div className="absolute right-12 bottom-0 p-3 bg-gray-900 border border-gray-800 rounded-lg shadow-lg w-48 max-w-[calc(100vw-6rem)]">
           <h3 className="text-sm font-bold mb-2">Filter By:</h3>
           
           <div className="space-y-2">
