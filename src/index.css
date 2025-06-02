@@ -50,20 +50,4 @@ body {
 
 .animate-pulse-glow {
   animation: pulse-glow 2s infinite;
-
-@media screen and (orientation: landscape) and (max-width: 768px) {
-  /* Mobile landscape specific styles */
-
-  #sidebar-container {
-    position: relative !important;
-    width: 50% !important;
-    transform: translateX(0) !important;
-  }
-
-  .map-container {
-    padding: 0.5rem !important;
-  }
 }
-
-}
-

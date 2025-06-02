@@ -201,7 +201,7 @@ const MapContainer: React.FC = () => {
             height: MAP_HEIGHT,
             transform: `translate3d(${mapViewport.x}px, ${mapViewport.y}px, 0) scale(${mapViewport.zoom})`,
             transformOrigin: 'center',
-            backgroundImage: `url('https://cdn.discordapp.com/attachments/1354442171545293000/1378567019640918057/CB_Map_Grayed_UPDATED_31.png?ex=683dbad6&is=683c6956&hm=a7c3d1e6742d294b01783f7ea6f035b5b6e9176aa4d9ce0165d499d8010f7b8f&')`,
+            backgroundImage: `url('https://cdn.discordapp.com/attachments/1354442171545293000/1378856206520815706/CB_Map_Grayed_UPDATED_33.png?ex=683ec829&is=683d76a9&hm=7cd404be4accd2ab617f0bdc2dde52ad613c652ff8cf0019dbdaa1606c8838d3&')`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',

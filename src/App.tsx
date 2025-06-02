@@ -7,12 +7,12 @@ import Sidebar from './components/Sidebar/Sidebar';
 function App() {
   return (
     <GameProvider>
-      <div className="flex flex-col h-screen bg-gray-950 text-gray-200 overflow-hidden">
+      <div className="flex flex-1 overflow-hidden relative flex-col landscape:flex-row">
         <Header />
         
         <div className="flex flex-1 overflow-hidden relative">
           {/* Main content - Map */}
-          <div className="flex-1 p-2 md:p-4 overflow-hidden"> 
+          <div className="flex-1 p-2 md:p-4 overflow-hidden landscape:p-1">
             <MapContainer />
           </div>
           
