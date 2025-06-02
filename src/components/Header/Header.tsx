@@ -7,6 +7,10 @@ const Header: React.FC = () => {
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
+    const sidebar = document.getElementById('sidebar-container');
+    if (sidebar) {
+      sidebar.style.transform = isMobileMenuOpen ? 'translateX(100%)' : 'translateX(0)';
+    }
   };
 
   return (
@@ -69,6 +73,9 @@ const NavLink: React.FC<NavLinkProps> = ({ children, icon, isActive = false }) =
     >
       {icon && <span className="mr-2">{icon}</span>}
       {children}
+      {isActive && (
+        <div className="absolute bottom-0 left-0 w-full h-0.5 bg-blue-500"></div>
+      )}
     </a>
   );
 };
