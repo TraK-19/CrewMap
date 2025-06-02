@@ -184,7 +184,6 @@ const MapContainer: React.FC = () => {
         className="absolute w-full h-full cursor-grab touch-none will-change-transform"
         style={{ 
           cursor: isDragging ? 'grabbing' : 'grab',
-          height: 'calc(100dvh - 60px)', // Use dynamic viewport height for mobile
         }}
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
