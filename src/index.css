@@ -9,8 +9,6 @@
 body {
   font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   @apply bg-gray-950 text-gray-200;
-  height: 100dvh; /* Use dynamic viewport height */
-  overflow: hidden;
 }
 
 /* Custom shadows for neon glow effects */
@@ -52,12 +50,4 @@ body {
 
 .animate-pulse-glow {
   animation: pulse-glow 2s infinite;
-}
-
-/* Mobile-specific styles */
-@media (max-width: 768px) {
-  #root {
-    height: 100dvh;
-    overflow: hidden;
-  }
 }
