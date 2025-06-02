@@ -20,7 +20,7 @@ const Sidebar: React.FC = () => {
   };
   
   return (
-    <div className="h-full flex flex-col bg-gray-900 border-l border-gray-800">
+    <div className="h-full flex flex-col bg-gray-900 border-l border-gray-800 will-change-transform">
       {/* Header */}
       <div className="p-4 border-b border-gray-800">
         <div className="flex items-center justify-between mb-4">
@@ -47,7 +47,7 @@ const Sidebar: React.FC = () => {
       </div>
       
       {/* Crews list */}
-      <div className="flex-1 overflow-y-auto p-3 space-y-2">
+      <div className="flex-1 overflow-y-auto p-3 space-y-2 overscroll-contain">
         {crews.map((crew) => (
           <CrewCard
             key={crew.id}

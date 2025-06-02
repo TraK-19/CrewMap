@@ -17,7 +17,7 @@ function App() {
           </div>
           
           {/* Sidebar - Crews */}
-          <div className="absolute md:relative w-full md:w-80 h-full transform translate-x-full md:translate-x-0 transition-transform duration-300 ease-in-out" 
+          <div className="absolute md:relative w-full md:w-80 h-full transform translate-x-full md:translate-x-0 transition-transform duration-300 ease-in-out will-change-transform" 
                id="sidebar-container">
             <Sidebar />
           </div>
