@@ -6,7 +6,7 @@ export const crews: Crew[] = [
     name: 'Roads Unlimited',
     themeColor: '#969696',
     memberCount: 9,
-    conqueredStars: 12,
+    conqueredStars: 16,
     description: 'Masters of the streets, known for their precision driving and tactical racing.'
   },
   {
@@ -14,7 +14,7 @@ export const crews: Crew[] = [
     name: 'Walkers',
     themeColor: '#ffc900',
     memberCount: 7,
-    conqueredStars: 8,
+    conqueredStars: 43,
     description: 'Speed demons who rule the night, leaving their mark on every street they conquer.'
   },
   {
@@ -22,7 +22,7 @@ export const crews: Crew[] = [
     name: 'The ACES',
     themeColor: '#001f8d',
     memberCount: 7,
-    conqueredStars: 6,
+    conqueredStars: 7,
     description: 'Elite racers who dominate with skill and strategy.'
   },
   {
@@ -30,7 +30,7 @@ export const crews: Crew[] = [
     name: 'Speed Of Light',
     themeColor: '#fcff92',
     memberCount: 9,
-    conqueredStars: 10,
+    conqueredStars: 13,
     description: 'Lightning-fast racers who strike before you even see them coming.'
   },
   {
@@ -38,7 +38,7 @@ export const crews: Crew[] = [
     name: 'Void Cascade',
     themeColor: '#810db6',
     memberCount: 5,
-    conqueredStars: 5,
+    conqueredStars: 1,
     description: 'Masters of the shadows, they emerge only to claim victory.'
   },
   {
@@ -62,7 +62,7 @@ export const crews: Crew[] = [
     name: 'Grayhats',
     themeColor: '#555555',
     memberCount: 6,
-    conqueredStars: 0,
+    conqueredStars: 1,
     description: 'Operating in the moral gray area, these skilled hackers turned street racers never play by the rules.'
   },
   {
@@ -70,7 +70,7 @@ export const crews: Crew[] = [
     name: 'Red Knights',
     themeColor: '#aa0004',
     memberCount: 1,
-    conqueredStars: 0,
+    conqueredStars: 2,
     description: 'A lone wolf with the skill and determination to challenge entire crews.'
   }
 ];
