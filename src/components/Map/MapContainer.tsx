@@ -38,15 +38,11 @@ const MapContainer: React.FC = () => {
         const scale = Math.min(scaleX, scaleY);
         
         const initialZoom = Math.max(scale * 1.5, MIN_ZOOM);
-        const scaledMapWidth = MAP_WIDTH * initialZoom;
-        const scaledMapHeight = MAP_HEIGHT * initialZoom;
-        const centerX = (containerWidth - scaledMapWidth) / 2;
-        const centerY = (containerHeight - scaledMapHeight) / 2;
         
         requestAnimationFrame(() => {
           updateMapViewport({
-            x: centerX,
-            y: centerY,
+            x: 0,
+            y: 0,
             zoom: initialZoom
           });
         });
@@ -80,14 +76,10 @@ const MapContainer: React.FC = () => {
       const scale = Math.min(scaleX, scaleY);
       
       const initialZoom = Math.max(scale * 1.5, MIN_ZOOM);
-      const scaledMapWidth = MAP_WIDTH * initialZoom;
-      const scaledMapHeight = MAP_HEIGHT * initialZoom;
-      const centerX = (containerWidth - scaledMapWidth) / 2;
-      const centerY = (containerHeight - scaledMapHeight) / 2;
       
       updateMapViewport({
-        x: centerX,
-        y: centerY,
+        x: 0,
+        y: 0,
         zoom: initialZoom
       });
     }
@@ -146,7 +138,7 @@ const MapContainer: React.FC = () => {
       );
       
       const delta = distance - lastTouchDistance;
-      const zoomDelta = delta * 0.005; // Reduced sensitivity
+      const zoomDelta = delta * 0.005;
       
       requestAnimationFrame(() => {
         const newZoom = Math.min(Math.max(mapViewport.zoom + zoomDelta, MIN_ZOOM), MAX_ZOOM);
@@ -195,11 +187,12 @@ const MapContainer: React.FC = () => {
       >
         {/* Map container with transformation */}
         <div 
-          className="absolute will-change-transform"
+          className="absolute top-1/2 left-1/2 will-change-transform"
           style={{ 
             width: MAP_WIDTH,
             height: MAP_HEIGHT,
-            transform: `translate3d(${mapViewport.x}px, ${mapViewport.y}px, 0) scale(${mapViewport.zoom})`,
+            transform: `translate(-50%, -50%) translate3d(${mapViewport.x}px, ${mapViewport.y}px, 0) scale(${mapViewport.zoom})`,
+            transformOrigin: 'center',
             backgroundImage: `url('https://cdn.discordapp.com/attachments/1354442171545293000/1378856206520815706/CB_Map_Grayed_UPDATED_33.png?ex=683ec829&is=683d76a9&hm=7cd404be4accd2ab617f0bdc2dde52ad613c652ff8cf0019dbdaa1606c8838d3&')`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
