@@ -195,12 +195,11 @@ const MapContainer: React.FC = () => {
       >
         {/* Map container with transformation */}
         <div 
-          className="absolute top-1/2 left-1/2 will-change-transform"
+          className="absolute will-change-transform"
           style={{ 
             width: MAP_WIDTH,
             height: MAP_HEIGHT,
             transform: `translate3d(${mapViewport.x}px, ${mapViewport.y}px, 0) scale(${mapViewport.zoom})`,
-            transformOrigin: 'center',
             backgroundImage: `url('https://cdn.discordapp.com/attachments/1354442171545293000/1378856206520815706/CB_Map_Grayed_UPDATED_33.png?ex=683ec829&is=683d76a9&hm=7cd404be4accd2ab617f0bdc2dde52ad613c652ff8cf0019dbdaa1606c8838d3&')`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
