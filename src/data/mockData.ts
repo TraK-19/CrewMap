@@ -75,7 +75,7 @@ export const crews: Crew[] = [
   }
 ];
 
-// Fixed positions for race stars distributed across the entire 2048x2048 map
+// Fixed positions for race stars distributed across the entire 2048x2048 map (Which probably won't be necessary since specific fixed locations are needed)
 const FIXED_STAR_POSITIONS = [
   // Top row (North)
   { x: 256, y: 200 },   // Northwest
@@ -172,14 +172,14 @@ export const raceStars: RaceStar[] = [
     id: 'star-4',
     name: 'Ice Peak Rally',
     position: FIXED_STAR_POSITIONS[3],
-    type: 'offroad',
+    type: 'racewar',
     conqueredBy: undefined,
   },
   {
     id: 'star-5',
     name: 'Crystal Highway',
     position: FIXED_STAR_POSITIONS[4],
-    type: 'drag',
+    type: 'canyon',
     conqueredBy: 'crew-1',
   },
   {
@@ -200,7 +200,7 @@ export const raceStars: RaceStar[] = [
     id: 'star-8',
     name: 'Mountain Pass',
     position: FIXED_STAR_POSITIONS[7],
-    type: 'offroad',
+    type: 'racewar',
     conqueredBy: undefined,
   },
   {
@@ -228,14 +228,14 @@ export const raceStars: RaceStar[] = [
     id: 'star-12',
     name: 'River Crossing',
     position: FIXED_STAR_POSITIONS[11],
-    type: 'offroad',
+    type: 'racewar',
     conqueredBy: undefined,
   },
   {
     id: 'star-13',
     name: 'City Lights',
     position: FIXED_STAR_POSITIONS[12],
-    type: 'drag',
+    type: 'canyon',
     conqueredBy: 'crew-3',
   },
   {
@@ -263,7 +263,7 @@ export const raceStars: RaceStar[] = [
     id: 'star-17',
     name: 'Industrial Zone',
     position: FIXED_STAR_POSITIONS[16],
-    type: 'offroad',
+    type: 'racewar',
     conqueredBy: 'crew-4',
   },
   {
@@ -284,7 +284,7 @@ export const raceStars: RaceStar[] = [
     id: 'star-20',
     name: 'Midnight Mile',
     position: FIXED_STAR_POSITIONS[19],
-    type: 'drag',
+    type: 'canyon',
     conqueredBy: undefined,
   },
   {
@@ -305,14 +305,14 @@ export const raceStars: RaceStar[] = [
     id: 'star-23',
     name: 'Dust Bowl',
     position: FIXED_STAR_POSITIONS[22],
-    type: 'offroad',
+    type: 'racewar',
     conqueredBy: undefined,
   },
   {
     id: 'star-24',
     name: 'Mirage Strip',
     position: FIXED_STAR_POSITIONS[23],
-    type: 'drag',
+    type: 'canyon',
     conqueredBy: undefined,
   },
   {
@@ -333,7 +333,7 @@ export const raceStars: RaceStar[] = [
     id: 'star-27',
     name: 'Mesa Peak',
     position: FIXED_STAR_POSITIONS[26],
-    type: 'offroad',
+    type: 'racewar',
     conqueredBy: undefined,
   },
   {
@@ -352,9 +352,9 @@ export const raceStars: RaceStar[] = [
   },
   {
     id: 'star-30',
-    name: 'Twilight Drag',
+    name: 'Twilight canyon',
     position: FIXED_STAR_POSITIONS[29],
-    type: 'drag',
+    type: 'canyon',
     conqueredBy: undefined,
   },
   {
@@ -389,7 +389,7 @@ export const raceStars: RaceStar[] = [
     id: 'star-35',
     name: 'Seaside Sprint',
     position: FIXED_STAR_POSITIONS[34],
-    type: 'drag',
+    type: 'canyon',
     conqueredBy: undefined,
   },
   {
@@ -424,7 +424,7 @@ export const raceStars: RaceStar[] = [
     id: 'star-40',
     name: 'Tidal Wave',
     position: FIXED_STAR_POSITIONS[39],
-    type: 'offroad',
+    type: 'racewar',
     conqueredBy: undefined,
   },
   {
@@ -445,14 +445,14 @@ export const raceStars: RaceStar[] = [
     id: 'star-43',
     name: 'Swamp Runner',
     position: FIXED_STAR_POSITIONS[42],
-    type: 'offroad',
+    type: 'racewar',
     conqueredBy: undefined,
   },
   {
     id: 'star-44',
-    name: 'Backwater Drag',
+    name: 'Backwater canyon',
     position: FIXED_STAR_POSITIONS[43],
-    type: 'drag',
+    type: 'canyon',
     conqueredBy: undefined,
   },
   {
@@ -493,14 +493,14 @@ export const raceStars: RaceStar[] = [
     id: 'star-50',
     name: 'Ice Peak Rally',
     position: FIXED_STAR_POSITIONS[3],
-    type: 'offroad',
+    type: 'racewar',
     conqueredBy: undefined,
   },
   {
     id: 'star-51',
     name: 'Crystal Highway',
     position: FIXED_STAR_POSITIONS[4],
-    type: 'drag',
+    type: 'canyon',
     conqueredBy: 'crew-1',
   },
   {
@@ -521,7 +521,7 @@ export const raceStars: RaceStar[] = [
     id: 'star-54',
     name: 'Mountain Pass',
     position: FIXED_STAR_POSITIONS[7],
-    type: 'offroad',
+    type: 'racewar',
     conqueredBy: undefined,
   },
   {
@@ -549,14 +549,14 @@ export const raceStars: RaceStar[] = [
     id: 'star-58',
     name: 'River Crossing',
     position: FIXED_STAR_POSITIONS[11],
-    type: 'offroad',
+    type: 'racewar',
     conqueredBy: undefined,
   },
   {
     id: 'star-59',
     name: 'City Lights',
     position: FIXED_STAR_POSITIONS[12],
-    type: 'drag',
+    type: 'canyon',
     conqueredBy: 'crew-3',
   },
   {
@@ -584,7 +584,7 @@ export const raceStars: RaceStar[] = [
     id: 'star-63',
     name: 'Industrial Zone',
     position: FIXED_STAR_POSITIONS[16],
-    type: 'offroad',
+    type: 'racewar',
     conqueredBy: 'crew-4',
   },
   {
@@ -605,7 +605,7 @@ export const raceStars: RaceStar[] = [
     id: 'star-66',
     name: 'Midnight Mile',
     position: FIXED_STAR_POSITIONS[19],
-    type: 'drag',
+    type: 'canyon',
     conqueredBy: undefined,
   },
   {
@@ -626,14 +626,14 @@ export const raceStars: RaceStar[] = [
     id: 'star-69',
     name: 'Dust Bowl',
     position: FIXED_STAR_POSITIONS[22],
-    type: 'offroad',
+    type: 'racewar',
     conqueredBy: undefined,
   },
   {
     id: 'star-70',
     name: 'Mirage Strip',
     position: FIXED_STAR_POSITIONS[23],
-    type: 'drag',
+    type: 'canyon',
     conqueredBy: undefined,
   },
   {
@@ -654,7 +654,7 @@ export const raceStars: RaceStar[] = [
     id: 'star-73',
     name: 'Mesa Peak',
     position: FIXED_STAR_POSITIONS[26],
-    type: 'offroad',
+    type: 'racewar',
     conqueredBy: undefined,
   },
   {
@@ -673,9 +673,9 @@ export const raceStars: RaceStar[] = [
   },
   {
     id: 'star-76',
-    name: 'Twilight Drag',
+    name: 'Twilight canyon',
     position: FIXED_STAR_POSITIONS[29],
-    type: 'drag',
+    type: 'canyon',
     conqueredBy: undefined,
   },
   {
@@ -710,7 +710,7 @@ export const raceStars: RaceStar[] = [
     id: 'star-81',
     name: 'Seaside Sprint',
     position: FIXED_STAR_POSITIONS[34],
-    type: 'drag',
+    type: 'canyon',
     conqueredBy: undefined,
   },
   {
@@ -745,7 +745,7 @@ export const raceStars: RaceStar[] = [
     id: 'star-86',
     name: 'Tidal Wave',
     position: FIXED_STAR_POSITIONS[39],
-    type: 'offroad',
+    type: 'racewar',
     conqueredBy: undefined,
   },
   {
@@ -766,14 +766,14 @@ export const raceStars: RaceStar[] = [
     id: 'star-89',
     name: 'Swamp Runner',
     position: FIXED_STAR_POSITIONS[42],
-    type: 'offroad',
+    type: 'racewar',
     conqueredBy: undefined,
   },
   {
     id: 'star-90',
-    name: 'Backwater Drag',
+    name: 'Backwater canyon',
     position: FIXED_STAR_POSITIONS[43],
-    type: 'drag',
+    type: 'canyon',
     conqueredBy: undefined,
   },
   {
@@ -815,14 +815,14 @@ export const raceStars: RaceStar[] = [
     id: 'star-96',
     name: 'Ice Peak Rally',
     position: FIXED_STAR_POSITIONS[3],
-    type: 'offroad',
+    type: 'racewar',
     conqueredBy: undefined,
   },
   {
     id: 'star-97',
     name: 'Crystal Highway',
     position: FIXED_STAR_POSITIONS[4],
-    type: 'drag',
+    type: 'canyon',
     conqueredBy: 'crew-1',
   },
   {
@@ -843,7 +843,7 @@ export const raceStars: RaceStar[] = [
     id: 'star-100',
     name: 'Mountain Pass',
     position: FIXED_STAR_POSITIONS[7],
-    type: 'offroad',
+    type: 'racewar',
     conqueredBy: undefined,
   },
   {
@@ -871,14 +871,14 @@ export const raceStars: RaceStar[] = [
     id: 'star-104',
     name: 'River Crossing',
     position: FIXED_STAR_POSITIONS[11],
-    type: 'offroad',
+    type: 'racewar',
     conqueredBy: undefined,
   },
   {
     id: 'star-105',
     name: 'City Lights',
     position: FIXED_STAR_POSITIONS[12],
-    type: 'drag',
+    type: 'canyon',
     conqueredBy: 'crew-3',
     },
 ];

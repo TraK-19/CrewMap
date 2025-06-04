@@ -17,8 +17,7 @@ export interface RaceStar {
   id: string;
   name: string;
   position: Coordinates;
-  difficulty: 'easy' | 'medium' | 'hard' | 'extreme';
-  type: 'sprint' | 'circuit' | 'drift' | 'drag' | 'offroad';
+  type: 'sprint' | 'circuit' | 'drift' | 'canyon' | 'racewar';
   conqueredBy?: string; // Crew ID
   rewardPoints: number;
 }

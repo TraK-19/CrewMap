@@ -92,8 +92,8 @@ const MapControls: React.FC<MapControlsProps> = ({
               <FilterButton type="sprint" label="Sprint" />
               <FilterButton type="circuit" label="Circuit" />
               <FilterButton type="drift" label="Drift" />
-              <FilterButton type="drag" label="Drag" />
-              <FilterButton type="offroad" label="Offroad" />
+              <FilterButton type="canyon" label="Canyon" />
+              <FilterButton type="racewar" label="Race War" />
             </div>
             
             <h4 className="text-xs text-gray-400 mt-3">Status</h4>
@@ -131,8 +131,8 @@ const FilterButton: React.FC<{ type: string, label: string }> = ({ type, label }
       case 'sprint': return '#3B82F6'; // Blue
       case 'circuit': return '#10B981'; // Green
       case 'drift': return '#FF36AB';  // Pink
-      case 'drag': return '#F59E0B';   // Amber
-      case 'offroad': return '#8B5CF6'; // Purple
+      case 'canyon': return '#F59E0B';   // Amber
+      case 'racewar': return '#8B5CF6'; // Purple
       default: return '#3B82F6';
     }
   };
