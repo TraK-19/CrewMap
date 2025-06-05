@@ -5,7 +5,7 @@ export const crews: Crew[] = [
     id: 'crew-1',
     name: 'Roads Unlimited',
     themeColor: '#969696',
-    logo:'https://imgur.com/a/mwqRBDw',
+    logo:'https://cdn.discordapp.com/attachments/1357317530896695332/1380163308631363594/Roads_Unlimited.png?ex=6842e0be&is=68418f3e&hm=2fe68fb40617c489f19b828d1682d91007e889cf885e36f3acee7306bde5f52e&',
     memberCount: 9,
     conqueredStars: 16,
     description: 'Masters of the streets, known for their precision driving and tactical racing.'
@@ -32,6 +32,7 @@ export const crews: Crew[] = [
     id: 'crew-4',
     name: 'Speed Of Light',
     themeColor: '#fcff92',
+    logo: 'https://cdn.discordapp.com/attachments/1362592376635523222/1364744028830044190/Logo.png?ex=6842d02c&is=68417eac&hm=2fc3da4628e5b64d1eaaf55b7b9d84b488812bc162e3a634f975cb93c3d20571&',
     memberCount: 9,
     conqueredStars: 13,
     description: 'Lightning-fast racers who strike before you even see them coming.'
@@ -65,6 +66,7 @@ export const crews: Crew[] = [
     id: 'crew-8',
     name: 'Grayhats',
     themeColor: '#555555',
+    logo: 'https://cdn.discordapp.com/attachments/1353086033226367098/1363545274835931226/GRAY_No4.png?ex=6842683e&is=684116be&hm=6590932f5529f33ca36e5fd4a8e5b1dcc1ba4a720b4a20e1fbe8cb44fec324dc&',
     memberCount: 6,
     conqueredStars: 1,
     description: 'Operating in the moral gray area, these skilled hackers turned street racers never play by the rules.'
@@ -73,6 +75,7 @@ export const crews: Crew[] = [
     id: 'crew-9',
     name: 'Red Knights',
     themeColor: '#aa0004',
+    logo: 'https://cdn.discordapp.com/attachments/1360956293749280910/1371167138366095421/red_knights_logo_circle_only.png?ex=68427328&is=684121a8&hm=2d008ee38b21fa3a63056274b01ee2d01f8bb31e1d373db6443a85be2c4695d6&',
     memberCount: 1,
     conqueredStars: 2,
     description: 'A lone wolf with the skill and determination to challenge entire crews.'
