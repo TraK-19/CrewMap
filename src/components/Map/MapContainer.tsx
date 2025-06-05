@@ -169,7 +169,7 @@ const MapContainer: React.FC = () => {
   };
   
   return (
-    <div className="relative w-full h-full min-h-[600px] flex-1 overflow-hidden rounded-lg border border-gray-800 bg-gray-900">
+    <div className="relative w-full h-full overflow-hidden rounded-lg border border-gray-800 bg-gray-900">
       {/* Map backdrop */}
       <div 
         ref={mapRef}
