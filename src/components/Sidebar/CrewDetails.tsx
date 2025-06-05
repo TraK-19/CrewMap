@@ -16,11 +16,21 @@ const CrewDetails: React.FC<CrewDetailsProps> = ({ crew, onClose }) => {
     <div className="p-4 bg-gray-900 border-t border-gray-800">
       <div className="flex justify-between items-start mb-4">
         <div 
-          className="w-12 h-12 rounded-full flex items-center justify-center mr-3"
+          className="w-12 h-12 rounded-full flex items-center justify-center mr-3 overflow-hidden"
           style={{ backgroundColor: `${crew.themeColor}20`, color: crew.themeColor }}
         >
           {crew.logo ? (
-            <img src={crew.logo} alt={crew.name} className="w-8 h-8" />
+            <img 
+              src={crew.logo} 
+              alt={`${crew.name} logo`} 
+              className="w-full h-full object-cover"
+              onError={(e) => {
+                // Fallback to crew initial if image fails to load
+                const target = e.target as HTMLImageElement;
+                target.style.display = 'none';
+                target.parentElement!.innerHTML = crew.name.charAt(0);
+              }}
+            />
           ) : (
             <div className="font-bold text-2xl">{crew.name.charAt(0)}</div>
           )}

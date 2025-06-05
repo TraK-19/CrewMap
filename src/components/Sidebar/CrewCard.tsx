@@ -21,11 +21,21 @@ const CrewCard: React.FC<CrewCardProps> = ({ crew, isSelected, onClick }) => {
       <div className="flex items-center">
         {/* Crew logo/icon */}
         <div 
-          className="w-10 h-10 rounded-full flex items-center justify-center mr-3"
+          className="w-10 h-10 rounded-full flex items-center justify-center mr-3 overflow-hidden"
           style={{ backgroundColor: `${crew.themeColor}20`, color: crew.themeColor }}
         >
           {crew.logo ? (
-            <img src={crew.logo} alt={crew.name} className="w-6 h-6" />
+            <img 
+              src={crew.logo} 
+              alt={`${crew.name} logo`} 
+              className="w-full h-full object-cover"
+              onError={(e) => {
+                // Fallback to crew initial if image fails to load
+                const target = e.target as HTMLImageElement;
+                target.style.display = 'none';
+                target.parentElement!.innerHTML = crew.name.charAt(0);
+              }}
+            />
           ) : (
             <div className="font-bold text-lg">{crew.name.charAt(0)}</div>
           )}

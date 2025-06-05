@@ -7,7 +7,7 @@ export interface Crew {
   id: string;
   name: string;
   themeColor: string;
-  logo?: string;
+  logo?: string;  // URL to the crew's logo image
   memberCount: number;
   conqueredStars: number;
   description?: string;
