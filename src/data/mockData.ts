@@ -5,6 +5,7 @@ export const crews: Crew[] = [
     id: 'crew-1',
     name: 'Roads Unlimited',
     themeColor: '#969696',
+    logo:'https://imgur.com/a/mwqRBDw',
     memberCount: 9,
     conqueredStars: 16,
     description: 'Masters of the streets, known for their precision driving and tactical racing.'
@@ -13,6 +14,7 @@ export const crews: Crew[] = [
     id: 'crew-2',
     name: 'Walkers',
     themeColor: '#ffc900',
+    logo: 'https://cdn.discordapp.com/attachments/1341062158397734912/1353312383275237417/Screenshot_20250323-1020012.png?ex=6842c0df&is=68416f5f&hm=b1e6265a7a52ec921ca7366611ac30c480a357d2f316b888717deaa0fbea92df&',
     memberCount: 7,
     conqueredStars: 43,
     description: 'Speed demons who rule the night, leaving their mark on every street they conquer.'
@@ -21,6 +23,7 @@ export const crews: Crew[] = [
     id: 'crew-3',
     name: 'The ACES',
     themeColor: '#001f8d',
+    logo: 'https://cdn.discordapp.com/attachments/1341062158397734912/1371577326122303662/ACES_2000s_f.png?ex=68429fad&is=68414e2d&hm=94dee8cb4752aeef4f862ade62995a84fc0ec707fc07ba3b5e643abfb6ee3ae1&',
     memberCount: 7,
     conqueredStars: 7,
     description: 'Elite racers who dominate with skill and strategy.'
@@ -45,6 +48,7 @@ export const crews: Crew[] = [
     id: 'crew-6',
     name: 'Ex-Machina',
     themeColor: '#00ffe5',
+    logo: 'https://cdn.discordapp.com/attachments/1357366499731574944/1357368445653745684/Official_Logo_2.png?ex=68425920&is=684107a0&hm=6aff106c37286637521eeeca093ec93da61ed3f3561860cf29c18be0def79bf8&',
     memberCount: 2,
     conqueredStars: 0,
     description: 'Tech-savvy racers who merge machine precision with human instinct.'
