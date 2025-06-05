@@ -41,6 +41,7 @@ export const crews: Crew[] = [
     id: 'crew-5',
     name: 'Void Cascade',
     themeColor: '#810db6',
+    logo: 'https://cdn.discordapp.com/attachments/1373754829460996256/1380169233136222218/VOID_LOGO_FINAL.png?ex=6842e643&is=684194c3&hm=3ca24395cd4de57c5ad67b32b50850ef228892da1dd0e812fa057d1572feca79&',
     memberCount: 5,
     conqueredStars: 1,
     description: 'Masters of the shadows, they emerge only to claim victory.'
