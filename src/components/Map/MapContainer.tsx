@@ -24,12 +24,13 @@ const MapContainer: React.FC = () => {
   const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
   const [showFilters, setShowFilters] = useState(false);
   const [lastTouchDistance, setLastTouchDistance] = useState(0);
+  const [isInitialized, setIsInitialized] = useState(false);
   const mapRef = useRef<HTMLDivElement>(null);
   
   // Set initial fullscreen viewport
   useEffect(() => {
     const initializeMap = () => {
-      if (mapRef.current) {
+      if (mapRef.current && !isInitialized) {
         const containerWidth = mapRef.current.clientWidth;
         const containerHeight = mapRef.current.clientHeight;
         
@@ -37,32 +38,77 @@ const MapContainer: React.FC = () => {
         const scaleY = containerHeight / MAP_HEIGHT;
         const scale = Math.min(scaleX, scaleY);
         
-        const initialZoom = Math.max(scale * 1.5, MIN_ZOOM);
+        const initialZoom = Math.max(scale * 0.8, MIN_ZOOM);
+        const scaledMapWidth = MAP_WIDTH * initialZoom;
+        const scaledMapHeight = MAP_HEIGHT * initialZoom;
+        const centerX = (containerWidth - scaledMapWidth) / 2;
+        const centerY = (containerHeight - scaledMapHeight) / 2;
         
-        requestAnimationFrame(() => {
-          updateMapViewport({
-            x: 0,
-            y: 0,
-            zoom: initialZoom
-          });
+        updateMapViewport({
+          x: centerX,
+          y: centerY,
+          zoom: initialZoom
         });
+        
+        setIsInitialized(true);
       }
     };
 
-    initializeMap();
-    window.addEventListener('resize', initializeMap);
-    return () => window.removeEventListener('resize', initializeMap);
-  }, []);
+    // Use a timeout to ensure the container is fully rendered
+    const timer = setTimeout(initializeMap, 100);
+    
+    return () => clearTimeout(timer);
+  }, [updateMapViewport, isInitialized]);
   
   const handleZoomIn = () => {
-    if (mapViewport.zoom < MAX_ZOOM) {
-      updateMapViewport({ zoom: mapViewport.zoom + ZOOM_STEP });
+    if (mapViewport.zoom < MAX_ZOOM && mapRef.current) {
+      const newZoom = mapViewport.zoom + ZOOM_STEP;
+      const containerWidth = mapRef.current.clientWidth;
+      const containerHeight = mapRef.current.clientHeight;
+      
+      // Calculate the center point of the current view
+      const currentCenterX = containerWidth / 2;
+      const currentCenterY = containerHeight / 2;
+      
+      // Calculate the map point that's currently at the center
+      const mapCenterX = (currentCenterX - mapViewport.x) / mapViewport.zoom;
+      const mapCenterY = (currentCenterY - mapViewport.y) / mapViewport.zoom;
+      
+      // Calculate new position to keep the same map point at center
+      const newX = currentCenterX - (mapCenterX * newZoom);
+      const newY = currentCenterY - (mapCenterY * newZoom);
+      
+      updateMapViewport({ 
+        x: newX,
+        y: newY,
+        zoom: newZoom 
+      });
     }
   };
   
   const handleZoomOut = () => {
-    if (mapViewport.zoom > MIN_ZOOM) {
-      updateMapViewport({ zoom: mapViewport.zoom - ZOOM_STEP });
+    if (mapViewport.zoom > MIN_ZOOM && mapRef.current) {
+      const newZoom = mapViewport.zoom - ZOOM_STEP;
+      const containerWidth = mapRef.current.clientWidth;
+      const containerHeight = mapRef.current.clientHeight;
+      
+      // Calculate the center point of the current view
+      const currentCenterX = containerWidth / 2;
+      const currentCenterY = containerHeight / 2;
+      
+      // Calculate the map point that's currently at the center
+      const mapCenterX = (currentCenterX - mapViewport.x) / mapViewport.zoom;
+      const mapCenterY = (currentCenterY - mapViewport.y) / mapViewport.zoom;
+      
+      // Calculate new position to keep the same map point at center
+      const newX = currentCenterX - (mapCenterX * newZoom);
+      const newY = currentCenterY - (mapCenterY * newZoom);
+      
+      updateMapViewport({ 
+        x: newX,
+        y: newY,
+        zoom: newZoom 
+      });
     }
   };
   
@@ -75,11 +121,15 @@ const MapContainer: React.FC = () => {
       const scaleY = containerHeight / MAP_HEIGHT;
       const scale = Math.min(scaleX, scaleY);
       
-      const initialZoom = Math.max(scale * 1.5, MIN_ZOOM);
+      const initialZoom = Math.max(scale * 0.8, MIN_ZOOM);
+      const scaledMapWidth = MAP_WIDTH * initialZoom;
+      const scaledMapHeight = MAP_HEIGHT * initialZoom;
+      const centerX = (containerWidth - scaledMapWidth) / 2;
+      const centerY = (containerHeight - scaledMapHeight) / 2;
       
       updateMapViewport({
-        x: 0,
-        y: 0,
+        x: centerX,
+        y: centerY,
         zoom: initialZoom
       });
     }
@@ -131,7 +181,7 @@ const MapContainer: React.FC = () => {
           y: e.touches[0].clientY - dragStart.y
         });
       });
-    } else if (e.touches.length === 2) {
+    } else if (e.touches.length === 2 && mapRef.current) {
       const distance = Math.hypot(
         e.touches[0].clientX - e.touches[1].clientX,
         e.touches[0].clientY - e.touches[1].clientY
@@ -139,11 +189,32 @@ const MapContainer: React.FC = () => {
       
       const delta = distance - lastTouchDistance;
       const zoomDelta = delta * 0.005;
+      const newZoom = Math.min(Math.max(mapViewport.zoom + zoomDelta, MIN_ZOOM), MAX_ZOOM);
       
-      requestAnimationFrame(() => {
-        const newZoom = Math.min(Math.max(mapViewport.zoom + zoomDelta, MIN_ZOOM), MAX_ZOOM);
-        updateMapViewport({ zoom: newZoom });
-      });
+      if (newZoom !== mapViewport.zoom) {
+        const containerWidth = mapRef.current.clientWidth;
+        const containerHeight = mapRef.current.clientHeight;
+        
+        // Calculate the center point of the current view
+        const currentCenterX = containerWidth / 2;
+        const currentCenterY = containerHeight / 2;
+        
+        // Calculate the map point that's currently at the center
+        const mapCenterX = (currentCenterX - mapViewport.x) / mapViewport.zoom;
+        const mapCenterY = (currentCenterY - mapViewport.y) / mapViewport.zoom;
+        
+        // Calculate new position to keep the same map point at center
+        const newX = currentCenterX - (mapCenterX * newZoom);
+        const newY = currentCenterY - (mapCenterY * newZoom);
+        
+        requestAnimationFrame(() => {
+          updateMapViewport({ 
+            x: newX,
+            y: newY,
+            zoom: newZoom 
+          });
+        });
+      }
       
       setLastTouchDistance(distance);
     }
@@ -187,24 +258,25 @@ const MapContainer: React.FC = () => {
       >
         {/* Map container with transformation */}
         <div 
-          className="absolute top-1/2 left-1/2 will-change-transform"
+          className="absolute will-change-transform"
           style={{ 
             width: MAP_WIDTH,
             height: MAP_HEIGHT,
-            transform: `translate(-50%, -50%) translate3d(${mapViewport.x}px, ${mapViewport.y}px, 0) scale(${mapViewport.zoom})`,
-            transformOrigin: 'center',
-            backgroundImage: `url('https://cdn.discordapp.com/attachments/1354442171545293000/1378856206520815706/CB_Map_Grayed_UPDATED_33.png?ex=683ec829&is=683d76a9&hm=7cd404be4accd2ab617f0bdc2dde52ad613c652ff8cf0019dbdaa1606c8838d3&')`,
+            transform: `translate3d(${mapViewport.x}px, ${mapViewport.y}px, 0) scale(${mapViewport.zoom})`,
+            transformOrigin: '0 0',
+            backgroundImage: `url('https://cdn.discordapp.com/attachments/1354442171545293000/1380921947214577829/CB_Map_Grayed_UPDATED_34.png?ex=6845a348&is=684451c8&hm=41da03d78a588e6e1e8b6c37dc77062140887f929968ea0c0152af15dd6c6063&')`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
+            backgroundColor: '#1f2937'
           }}
         >
           {/* Map overlay for better visibility */}
           <div 
             className="absolute inset-0"
             style={{
-              background: 'linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3))',
-              boxShadow: 'inset 0 0 200px rgba(0,0,0,0.5)'
+              background: 'linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4))',
+              boxShadow: 'inset 0 0 200px rgba(0,0,0,0.3)'
             }}
           />
           

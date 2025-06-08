@@ -7,7 +7,7 @@ export interface Crew {
   id: string;
   name: string;
   themeColor: string;
-  logo?: string;  // URL to the crew's logo image
+  logo?: string;
   memberCount: number;
   conqueredStars: number;
   description?: string;
@@ -17,7 +17,8 @@ export interface RaceStar {
   id: string;
   name: string;
   position: Coordinates;
-  type: 'sprint' | 'circuit' | 'drift' | 'canyon' | 'racewar';
+  difficulty: 'easy' | 'medium' | 'hard' | 'extreme';
+  type: 'sprint' | 'circuit' | 'drift' | 'drag' | 'offroad';
   conqueredBy?: string; // Crew ID
   rewardPoints: number;
 }
