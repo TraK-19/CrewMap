@@ -6,7 +6,7 @@ export const crews: Crew[] = [
     name: 'Roads Unlimited',
     themeColor: '#969696',
     memberCount: 9,
-    conqueredStars: 12,
+    conqueredStars: 16,
     description: 'Masters of the streets, known for their precision driving and tactical racing.',
     logo: 'https://cdn.discordapp.com/attachments/1357317530896695332/1380163308631363594/Roads_Unlimited.png?ex=684826be&is=6846d53e&hm=16ebb8d6c9cc1a5ae79f1b7cc7bcbc25ecf4ec1ac3ac644f59a0e98385e870f8&'
   },
@@ -15,7 +15,7 @@ export const crews: Crew[] = [
     name: 'Walkers',
     themeColor: '#ffc900',
     memberCount: 7,
-    conqueredStars: 8,
+    conqueredStars: 46,
     description: 'Speed demons who rule the night, leaving their mark on every street they conquer.',
     logo: 'https://cdn.discordapp.com/attachments/1341062158397734912/1353312383275237417/Screenshot_20250323-1020012.png?ex=684806df&is=6846b55f&hm=2156b762cd316c32dc88f2c721c470b3684327963a8805db8197d61454dd75a0&'
   },
@@ -24,7 +24,7 @@ export const crews: Crew[] = [
     name: 'The ACES',
     themeColor: '#001f8d',
     memberCount: 7,
-    conqueredStars: 6,
+    conqueredStars: 7,
     description: 'Elite racers who dominate with skill and strategy.',
     logo: 'https://cdn.discordapp.com/attachments/1341062158397734912/1371577326122303662/ACES_2000s_f.png?ex=6847e5ad&is=6846942d&hm=8993175309a1ab156b8c5130129929efeeb40eafb5d63f1c0704e2f699b1bd97&'
   },
@@ -33,7 +33,7 @@ export const crews: Crew[] = [
     name: 'Speed Of Light',
     themeColor: '#fcff92',
     memberCount: 9,
-    conqueredStars: 10,
+    conqueredStars: 15,
     description: 'Lightning-fast racers who strike before you even see them coming.',
     logo: 'https://cdn.discordapp.com/attachments/1362592376635523222/1364744028830044190/Logo.png?ex=6848162c&is=6846c4ac&hm=e01775f91ba0f40c73e2b2ae8bf26096a36e7ca2b08bf1fcb6416d1e86d9f4b9&'
   },
@@ -42,7 +42,7 @@ export const crews: Crew[] = [
     name: 'Void Cascade',
     themeColor: '#810db6',
     memberCount: 6,
-    conqueredStars: 5,
+    conqueredStars: 1,
     description: 'Masters of the shadows, they emerge only to claim victory.',
     logo: 'https://cdn.discordapp.com/attachments/1373754829460996256/1380169233136222218/VOID_LOGO_FINAL.png?ex=68482c43&is=6846dac3&hm=fe9b62011f48d1c4edbf6b741bdbb85e35aba9424a753efb0915e91eea316c84&'
   },
@@ -68,7 +68,7 @@ export const crews: Crew[] = [
     name: 'Grayhats',
     themeColor: '#555555',
     memberCount: 6,
-    conqueredStars: 0,
+    conqueredStars: 2,
     description: 'Operating in the moral gray area, these skilled hackers turned street racers never play by the rules.',
     logo: 'https://cdn.discordapp.com/attachments/1353086033226367098/1363545274835931226/GRAY_No4.png?ex=6847ae3e&is=68465cbe&hm=0e46f339ec3d50d84929ff93c7d84c37d667b946bb37693b2fba16f7bd580103&'
   },
@@ -77,7 +77,7 @@ export const crews: Crew[] = [
     name: 'Red Knights',
     themeColor: '#aa0004',
     memberCount: 1,
-    conqueredStars: 0,
+    conqueredStars: 1,
     description: 'A lone wolf with the skill and determination to challenge entire crews.',
     logo: 'https://cdn.discordapp.com/attachments/1360956293749280910/1371167138366095421/red_knights_logo_circle_only.png?ex=6847b928&is=684667a8&hm=06938954f5671a588416d9850c0f188f7e9b836dcffee22db3e25ca48cf4e5fa&'
   }
