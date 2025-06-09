@@ -17,7 +17,7 @@ export const crews: Crew[] = [
     memberCount: 7,
     conqueredStars: 8,
     description: 'Speed demons who rule the night, leaving their mark on every street they conquer.',
-    logo: 'https://images.pexels.com/photos/1545743/pexels-photo-1545743.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop'
+    logo: 'https://cdn.discordapp.com/attachments/1341062158397734912/1353312383275237417/Screenshot_20250323-1020012.png?ex=684806df&is=6846b55f&hm=2156b762cd316c32dc88f2c721c470b3684327963a8805db8197d61454dd75a0&'
   },
   {
     id: 'crew-3',
