@@ -7,7 +7,8 @@ export const crews: Crew[] = [
     themeColor: '#969696',
     memberCount: 9,
     conqueredStars: 12,
-    description: 'Masters of the streets, known for their precision driving and tactical racing.'
+    description: 'Masters of the streets, known for their precision driving and tactical racing.',
+    logo: 'https://cdn.discordapp.com/attachments/1357317530896695332/1380163308631363594/Roads_Unlimited.png?ex=684826be&is=6846d53e&hm=16ebb8d6c9cc1a5ae79f1b7cc7bcbc25ecf4ec1ac3ac644f59a0e98385e870f8&'
   },
   {
     id: 'crew-2',
@@ -15,7 +16,8 @@ export const crews: Crew[] = [
     themeColor: '#ffc900',
     memberCount: 7,
     conqueredStars: 8,
-    description: 'Speed demons who rule the night, leaving their mark on every street they conquer.'
+    description: 'Speed demons who rule the night, leaving their mark on every street they conquer.',
+    logo: 'https://images.pexels.com/photos/1545743/pexels-photo-1545743.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop'
   },
   {
     id: 'crew-3',
@@ -23,7 +25,8 @@ export const crews: Crew[] = [
     themeColor: '#001f8d',
     memberCount: 7,
     conqueredStars: 6,
-    description: 'Elite racers who dominate with skill and strategy.'
+    description: 'Elite racers who dominate with skill and strategy.',
+    logo: 'https://images.pexels.com/photos/1164778/pexels-photo-1164778.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop'
   },
   {
     id: 'crew-4',
@@ -31,7 +34,8 @@ export const crews: Crew[] = [
     themeColor: '#fcff92',
     memberCount: 9,
     conqueredStars: 10,
-    description: 'Lightning-fast racers who strike before you even see them coming.'
+    description: 'Lightning-fast racers who strike before you even see them coming.',
+    logo: 'https://images.pexels.com/photos/1545743/pexels-photo-1545743.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop'
   },
   {
     id: 'crew-5',
@@ -39,7 +43,8 @@ export const crews: Crew[] = [
     themeColor: '#810db6',
     memberCount: 6,
     conqueredStars: 5,
-    description: 'Masters of the shadows, they emerge only to claim victory.'
+    description: 'Masters of the shadows, they emerge only to claim victory.',
+    logo: 'https://images.pexels.com/photos/1164778/pexels-photo-1164778.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop'
   },
   {
     id: 'crew-6',
