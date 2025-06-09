@@ -26,7 +26,7 @@ export const crews: Crew[] = [
     memberCount: 7,
     conqueredStars: 6,
     description: 'Elite racers who dominate with skill and strategy.',
-    logo: 'https://images.pexels.com/photos/1164778/pexels-photo-1164778.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop'
+    logo: 'https://cdn.discordapp.com/attachments/1341062158397734912/1371577326122303662/ACES_2000s_f.png?ex=6847e5ad&is=6846942d&hm=8993175309a1ab156b8c5130129929efeeb40eafb5d63f1c0704e2f699b1bd97&'
   },
   {
     id: 'crew-4',
@@ -35,7 +35,7 @@ export const crews: Crew[] = [
     memberCount: 9,
     conqueredStars: 10,
     description: 'Lightning-fast racers who strike before you even see them coming.',
-    logo: 'https://images.pexels.com/photos/1545743/pexels-photo-1545743.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop'
+    logo: 'https://cdn.discordapp.com/attachments/1362592376635523222/1364744028830044190/Logo.png?ex=6848162c&is=6846c4ac&hm=e01775f91ba0f40c73e2b2ae8bf26096a36e7ca2b08bf1fcb6416d1e86d9f4b9&'
   },
   {
     id: 'crew-5',
@@ -44,7 +44,7 @@ export const crews: Crew[] = [
     memberCount: 6,
     conqueredStars: 5,
     description: 'Masters of the shadows, they emerge only to claim victory.',
-    logo: 'https://images.pexels.com/photos/1164778/pexels-photo-1164778.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop'
+    logo: 'https://cdn.discordapp.com/attachments/1373754829460996256/1380169233136222218/VOID_LOGO_FINAL.png?ex=68482c43&is=6846dac3&hm=fe9b62011f48d1c4edbf6b741bdbb85e35aba9424a753efb0915e91eea316c84&'
   },
   {
     id: 'crew-6',
@@ -52,7 +52,8 @@ export const crews: Crew[] = [
     themeColor: '#00ffe5',
     memberCount: 2,
     conqueredStars: 0,
-    description: 'Tech-savvy racers who merge machine precision with human instinct.'
+    description: 'Tech-savvy racers who merge machine precision with human instinct.',
+    logo: 'https://cdn.discordapp.com/attachments/1357366499731574944/1357368401328078898/Logo_no_text.png?ex=68479f15&is=68464d95&hm=29482d002206157e977a730a64aa8bce88a4709578c3cd33b5e5ee8150e9a7de&'
   },
   {
     id: 'crew-7',
@@ -68,7 +69,8 @@ export const crews: Crew[] = [
     themeColor: '#555555',
     memberCount: 6,
     conqueredStars: 0,
-    description: 'Operating in the moral gray area, these skilled hackers turned street racers never play by the rules.'
+    description: 'Operating in the moral gray area, these skilled hackers turned street racers never play by the rules.',
+    logo: 'https://cdn.discordapp.com/attachments/1353086033226367098/1363545274835931226/GRAY_No4.png?ex=6847ae3e&is=68465cbe&hm=0e46f339ec3d50d84929ff93c7d84c37d667b946bb37693b2fba16f7bd580103&'
   },
   {
     id: 'crew-9',
@@ -76,7 +78,8 @@ export const crews: Crew[] = [
     themeColor: '#aa0004',
     memberCount: 1,
     conqueredStars: 0,
-    description: 'A lone wolf with the skill and determination to challenge entire crews.'
+    description: 'A lone wolf with the skill and determination to challenge entire crews.',
+    logo: 'https://cdn.discordapp.com/attachments/1360956293749280910/1371167138366095421/red_knights_logo_circle_only.png?ex=6847b928&is=684667a8&hm=06938954f5671a588416d9850c0f188f7e9b836dcffee22db3e25ca48cf4e5fa&'
   }
 ];
 
