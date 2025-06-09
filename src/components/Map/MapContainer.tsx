@@ -60,6 +60,48 @@ const MapContainer: React.FC = () => {
     return () => clearTimeout(timer);
   }, [updateMapViewport, isInitialized]);
   
+  // Mouse wheel zoom functionality
+  useEffect(() => {
+    const handleWheel = (e: WheelEvent) => {
+      if (!mapRef.current) return;
+      
+      e.preventDefault();
+      
+      const containerRect = mapRef.current.getBoundingClientRect();
+      const mouseX = e.clientX - containerRect.left;
+      const mouseY = e.clientY - containerRect.top;
+      
+      // Determine zoom direction and amount
+      const zoomDelta = e.deltaY > 0 ? -ZOOM_STEP : ZOOM_STEP;
+      const newZoom = Math.min(Math.max(mapViewport.zoom + zoomDelta, MIN_ZOOM), MAX_ZOOM);
+      
+      if (newZoom !== mapViewport.zoom) {
+        // Calculate the map point that's currently under the mouse
+        const mapPointX = (mouseX - mapViewport.x) / mapViewport.zoom;
+        const mapPointY = (mouseY - mapViewport.y) / mapViewport.zoom;
+        
+        // Calculate new position to keep the same map point under the mouse
+        const newX = mouseX - (mapPointX * newZoom);
+        const newY = mouseY - (mapPointY * newZoom);
+        
+        updateMapViewport({ 
+          x: newX,
+          y: newY,
+          zoom: newZoom 
+        });
+      }
+    };
+
+    const mapElement = mapRef.current;
+    if (mapElement) {
+      mapElement.addEventListener('wheel', handleWheel, { passive: false });
+      
+      return () => {
+        mapElement.removeEventListener('wheel', handleWheel);
+      };
+    }
+  }, [mapViewport, updateMapViewport]);
+  
   const handleZoomIn = () => {
     if (mapViewport.zoom < MAX_ZOOM && mapRef.current) {
       const newZoom = mapViewport.zoom + ZOOM_STEP;
