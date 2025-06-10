@@ -77,7 +77,7 @@ const CrewDetails: React.FC<CrewDetailsProps> = ({ crew, onClose }) => {
           onClick={() => filterStarsByCrew(crew.id)}
           className="flex-1"
         >
-          Conquered Stars
+          View Conquered Stars
         </Button>
         <Button 
           variant="primary"
