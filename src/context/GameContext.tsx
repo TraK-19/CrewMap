@@ -13,6 +13,7 @@ interface GameContextType {
   setSelectedCrew: (crew: Crew | null) => void;
   filterStarsByType: (type: string | null) => void;
   filterStarsByCrew: (crewId: string | null) => void;
+  filterUnconqueredStars: () => void;
   updateMapViewport: (viewport: Partial<MapViewport>) => void;
   resetFilters: () => void;
 }
@@ -32,16 +33,22 @@ export const GameProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const [activeFilters, setActiveFilters] = useState<{
     type: string | null;
     crew: string | null;
-  }>({ type: null, crew: null });
+    unconquered: boolean;
+  }>({ type: null, crew: null, unconquered: false });
   const [mapViewport, setMapViewport] = useState<MapViewport>(defaultViewport);
 
   const filterStarsByType = (type: string | null) => {
-    const newFilters = { ...activeFilters, type };
+    const newFilters = { ...activeFilters, type, unconquered: false };
     applyFilters(newFilters);
   };
 
   const filterStarsByCrew = (crewId: string | null) => {
-    const newFilters = { ...activeFilters, crew: crewId };
+    const newFilters = { ...activeFilters, crew: crewId, unconquered: false };
+    applyFilters(newFilters);
+  };
+
+  const filterUnconqueredStars = () => {
+    const newFilters = { type: null, crew: null, unconquered: true };
     applyFilters(newFilters);
   };
 
@@ -57,12 +64,16 @@ export const GameProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     if (filters.crew) {
       filtered = filtered.filter(star => star.conqueredBy === filters.crew);
     }
+
+    if (filters.unconquered) {
+      filtered = filtered.filter(star => !star.conqueredBy);
+    }
     
     setFilteredStars(filtered);
   };
 
   const resetFilters = () => {
-    setActiveFilters({ type: null, crew: null });
+    setActiveFilters({ type: null, crew: null, unconquered: false });
     setFilteredStars(raceStars);
   };
 
@@ -83,6 +94,7 @@ export const GameProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         setSelectedCrew,
         filterStarsByType,
         filterStarsByCrew,
+        filterUnconqueredStars,
         updateMapViewport,
         resetFilters
       }}

@@ -18,7 +18,7 @@ const MapControls: React.FC<MapControlsProps> = ({
   onFilterClick,
   showFilters
 }) => {
-  const { resetFilters } = useGame();
+  const { resetFilters, filterUnconqueredStars } = useGame();
   
   const toggleSidebar = () => {
     const sidebar = document.getElementById('sidebar-container');
@@ -110,7 +110,7 @@ const MapControls: React.FC<MapControlsProps> = ({
                 variant="outline"
                 size="sm"
                 className="text-xs py-1"
-                onClick={() => {}}
+                onClick={filterUnconqueredStars}
               >
                 Unconquered
               </Button>
