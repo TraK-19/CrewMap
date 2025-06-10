@@ -94,6 +94,7 @@ const MapControls: React.FC<MapControlsProps> = ({
               <FilterButton type="drift" label="Drift" />
               <FilterButton type="racewar" label="Race War" />
               <FilterButton type="canyon" label="Canyon" />
+              <FilterButton type="streetx" label="Street-X" />
             </div>
             
             <h4 className="text-xs text-gray-400 mt-3">Status</h4>
@@ -128,11 +129,12 @@ const FilterButton: React.FC<{ type: string, label: string }> = ({ type, label }
   
   const getTypeColor = () => {
     switch(type) {
-      case 'sprint': return '#3B82F6'; // Blue
-      case 'circuit': return '#10B981'; // Green
-      case 'drift': return '#FF36AB';  // Pink
-      case 'racewar': return '#F59E0B';   // Amber
-      case 'canyon': return '#8B5CF6'; // Purple
+      case 'sprint': return '#0d9b0d'; // Gree
+      case 'circuit': return '#6413d6'; // Purple
+      case 'drift': return '#c6ef87';  // Bright yellow
+      case 'racewar': return '#F59E0B'; // Amber
+      case 'canyon': return '#138af4'; // Blue
+      case 'streetx': return '#7eb9e0'; // Cyan
       default: return '#3B82F6';
     }
   };

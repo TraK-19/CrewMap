@@ -222,7 +222,7 @@ export const raceStars: RaceStar[] = [
     id: 'star-10',
     name: 'Main Street',
     position: FIXED_STAR_POSITIONS[9],
-    type: 'circuit',
+    type: 'streetx',
     conqueredBy: 'crew-2',
   },
   {
@@ -404,7 +404,7 @@ export const raceStars: RaceStar[] = [
     id: 'star-36',
     name: 'Main Street / Kimei Temple',
     position: FIXED_STAR_POSITIONS[35],
-    type: 'circuit',
+    type: 'circuit', //Needs to be circuit OR street-X
     conqueredBy: 'crew-1',
   },
   {
@@ -474,7 +474,7 @@ export const raceStars: RaceStar[] = [
     id: 'star-46', //After this one, everything repeats (Except for star number)
     name: 'Kings Park',
     position: FIXED_STAR_POSITIONS[45],
-    type: 'circuit',
+    type: 'streetx',
     conqueredBy: 'crew-3',
   },
   {id: 'star-47',
@@ -732,7 +732,7 @@ export const raceStars: RaceStar[] = [
     id: 'star-83',
     name: 'Infinity Park',
     position: FIXED_STAR_POSITIONS[36],
-    type: 'circuit',
+    type: 'streetx',
     conqueredBy: undefined,
   },
   {

@@ -24,6 +24,21 @@ const RaceStar: React.FC<RaceStarProps> = ({
   const starColor = ownerCrew ? ownerCrew.themeColor : '#FFFFFF';
   const starOpacity = ownerCrew ? '1' : '1';
 
+  // Get race type display name and color
+  const getRaceTypeInfo = (type: string) => {
+    switch(type) {
+      case 'sprint': return { name: 'Sprint', color: '#0d9b0d' };
+      case 'circuit': return { name: 'Circuit', color: '#6413d6' };
+      case 'drift': return { name: 'Drift', color: '#c6ef87' };
+      case 'racewar': return { name: 'Race War', color: '#F59E0B' };
+      case 'canyon': return { name: 'Canyon', color: '#138af4' };
+      case 'streetx': return { name: 'Street-X', color: '#7eb9e0' };
+      default: return { name: type, color: '#3B82F6' };
+    }
+  };
+
+  const raceTypeInfo = getRaceTypeInfo(star.type);
+
   return (
     <div 
       className={`absolute transform -translate-x-1/2 -translate-y-1/2 transition-all duration-300 z-10 cursor-pointer
@@ -57,9 +72,25 @@ const RaceStar: React.FC<RaceStarProps> = ({
       
       {/* Race info tooltip (only shows when selected) */}
       {isSelected && (
-        <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-48 p-2 bg-gray-900 bg-opacity-90 rounded-md border border-gray-700 shadow-lg z-30">
-          <h3 className="font-bold text-white">{star.name}</h3>
-          <div className="mt-2 text-xs text-gray-300">
+        <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-48 p-3 bg-gray-900 bg-opacity-95 rounded-md border border-gray-700 shadow-lg z-30">
+          <h3 className="font-bold text-white mb-2">{star.name}</h3>
+          
+          {/* Race type badge */}
+          <div className="mb-2">
+            <span 
+              className="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium border"
+              style={{ 
+                backgroundColor: `${raceTypeInfo.color}20`,
+                color: raceTypeInfo.color,
+                borderColor: `${raceTypeInfo.color}40`
+              }}
+            >
+              {raceTypeInfo.name}
+            </span>
+          </div>
+          
+          {/* Conquest status */}
+          <div className="text-xs text-gray-300">
             {ownerCrew ? (
               <p>
                 Conquered by: <span style={{ color: ownerCrew.themeColor }}>{ownerCrew.name}</span>
