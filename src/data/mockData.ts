@@ -157,10 +157,10 @@ const FIXED_STAR_POSITIONS = [
 export const raceStars: RaceStar[] = [
   {
     id: 'star-1',
-    name: 'Northern Gateway',
+    name: 'Beachfront',
     position: { x: 100, y: 50 }, // Manual position. Should be used to all other stars, instead of FIXED_STAR_POSITIONS[]
-    type: 'sprint',
-    conqueredBy: 'crew-1',
+    type: 'circuit',
+    conqueredBy: 'crew-2',
   },
   {
     id: 'star-2',

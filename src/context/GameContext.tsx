@@ -24,9 +24,14 @@ const defaultViewport: MapViewport = {
   zoom: 1
 };
 
+// Create context with undefined as default to ensure proper error handling
 const GameContext = createContext<GameContextType | undefined>(undefined);
 
-export const GameProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+interface GameProviderProps {
+  children: ReactNode;
+}
+
+export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
   const [selectedStar, setSelectedStar] = useState<RaceStar | null>(null);
   const [selectedCrew, setSelectedCrew] = useState<Crew | null>(null);
   const [filteredStars, setFilteredStars] = useState<RaceStar[]>(raceStars);
@@ -81,24 +86,24 @@ export const GameProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     setMapViewport(prev => ({ ...prev, ...viewport }));
   };
 
+  const contextValue: GameContextType = {
+    crews,
+    raceStars,
+    selectedStar,
+    selectedCrew,
+    filteredStars,
+    mapViewport,
+    setSelectedStar,
+    setSelectedCrew,
+    filterStarsByType,
+    filterStarsByCrew,
+    filterUnconqueredStars,
+    updateMapViewport,
+    resetFilters
+  };
+
   return (
-    <GameContext.Provider
-      value={{
-        crews,
-        raceStars,
-        selectedStar,
-        selectedCrew,
-        filteredStars,
-        mapViewport,
-        setSelectedStar,
-        setSelectedCrew,
-        filterStarsByType,
-        filterStarsByCrew,
-        filterUnconqueredStars,
-        updateMapViewport,
-        resetFilters
-      }}
-    >
+    <GameContext.Provider value={contextValue}>
       {children}
     </GameContext.Provider>
   );
@@ -106,7 +111,7 @@ export const GameProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
 export const useGame = (): GameContextType => {
   const context = useContext(GameContext);
-  if (!context) {
+  if (context === undefined) {
     throw new Error('useGame must be used within a GameProvider');
   }
   return context;
