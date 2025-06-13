@@ -330,7 +330,7 @@ const MapContainer: React.FC = () => {
               crews={crews}
               isSelected={selectedStar?.id === star.id}
               onClick={() => handleStarClick(star)}
-              scale={1}
+              scale={1} // / mapViewport.zoom <-- Makes the stars scale with the map
             />
           ))}
         </div>
