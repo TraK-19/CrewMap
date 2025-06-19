@@ -466,14 +466,14 @@ export const raceStars: RaceStar[] = [
   {
     id: 'star-45',
     name: 'Old Quarter',
-    position: FIXED_STAR_POSITIONS[44],
+    position: { x: 1502, y: 1173},
     type: 'drift',
     conqueredBy: 'crew-2',
   },
   {
     id: 'star-46', //After this one, everything repeats (Except for star number)
     name: 'Kings Park',
-    position: FIXED_STAR_POSITIONS[45],
+    position: { x: 1589, y: 1039},
     type: 'streetx',
     conqueredBy: 'crew-3',
   },
