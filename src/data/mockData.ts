@@ -221,7 +221,7 @@ export const raceStars: RaceStar[] = [
     id: 'star-20',
     name: 'Eskuri Loop',
     position: { x: 1187, y: 1251 },
-    type: 'circuit',
+    type: 'streetx',
     conqueredBy: 'crew-2',
   },
   {
