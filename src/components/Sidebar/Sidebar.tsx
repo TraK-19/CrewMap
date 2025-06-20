@@ -63,7 +63,7 @@ const Sidebar: React.FC = () => {
         <div className="flex justify-between">
           <div className="flex items-center">
             <Trophy size={14} className="mr-1 text-blue-500" />
-            <span>106 Total Race Stars</span>
+            <span>105 Total Race Stars</span>
           </div>
           <div className="flex items-center">
             <Map size={14} className="mr-1 text-blue-500" />
