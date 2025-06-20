@@ -83,82 +83,11 @@ export const crews: Crew[] = [
   }
 ];
 
-//Fixed positions for race stars distributed across the entire 2048x2048 map
-const FIXED_STAR_POSITIONS = [
-  // Top row (North)
-  { x: 256, y: 200 },   // Northwest
-  { x: 512, y: 150 },   // North-center-left
-  { x: 768, y: 180 },   // North-center
-  { x: 1024, y: 160 },  // North-center-right
-  { x: 1280, y: 190 },  // North-center-far
-  { x: 1536, y: 170 },  // North-far-right
-  { x: 1792, y: 210 },  // Northeast
-
-  // Upper-middle row
-  { x: 200, y: 450 },   // West-upper
-  { x: 400, y: 380 },   // Left-upper
-  { x: 680, y: 420 },   // Center-left-upper
-  { x: 900, y: 350 },   // Center-upper
-  { x: 1200, y: 400 },  // Center-right-upper
-  { x: 1450, y: 360 },  // Right-upper
-  { x: 1700, y: 430 },  // Far-right-upper
-  { x: 1900, y: 380 },  // East-upper
-
-  // Center row
-  { x: 150, y: 700 },   // West-center
-  { x: 350, y: 750 },   // Left-center
-  { x: 550, y: 680 },   // Center-left
-  { x: 800, y: 720 },   // Center
-  { x: 1050, y: 690 },  // Center-right
-  { x: 1300, y: 740 },  // Right-center
-  { x: 1550, y: 710 },  // Far-right-center
-  { x: 1800, y: 680 },  // East-center
-
-  // Lower-middle row
-  { x: 220, y: 1000 },  // West-lower
-  { x: 480, y: 1050 },  // Left-lower
-  { x: 720, y: 980 },   // Center-left-lower
-  { x: 950, y: 1020 },  // Center-lower
-  { x: 1180, y: 1060 }, // Center-right-lower
-  { x: 1420, y: 990 },  // Right-lower
-  { x: 1680, y: 1040 }, // Far-right-lower
-  { x: 1850, y: 1010 }, // East-lower
-
-  // Bottom row (South)
-  { x: 180, y: 1300 },  // Southwest-upper
-  { x: 400, y: 1350 },  // South-left-upper
-  { x: 650, y: 1320 },  // South-center-left-upper
-  { x: 900, y: 1380 },  // South-center-upper
-  { x: 1150, y: 1340 }, // South-center-right-upper
-  { x: 1400, y: 1360 }, // South-right-upper
-  { x: 1650, y: 1330 }, // South-far-right-upper
-  { x: 1880, y: 1370 }, // Southeast-upper
-
-  // Far south row
-  { x: 250, y: 1600 },  // Southwest-lower
-  { x: 500, y: 1650 },  // South-left-lower
-  { x: 750, y: 1620 },  // South-center-left-lower
-  { x: 1000, y: 1680 }, // South-center-lower
-  { x: 1250, y: 1640 }, // South-center-right-lower
-  { x: 1500, y: 1660 }, // South-right-lower
-  { x: 1750, y: 1630 }, // South-far-right-lower
-  { x: 1900, y: 1670 }, // Southeast-lower
-
-  // Bottom edge
-  { x: 300, y: 1850 },  // Southwest-bottom
-  { x: 600, y: 1900 },  // South-left-bottom
-  { x: 900, y: 1880 },  // South-center-bottom
-  { x: 1200, y: 1920 }, // South-center-right-bottom
-  { x: 1500, y: 1890 }, // South-right-bottom
-  { x: 1800, y: 1870 }, // Southeast-bottom
-];
-
-// Race star data with fixed positions
 export const raceStars: RaceStar[] = [
   {
     id: 'star-1',
     name: 'Beachfront',
-    position: { x: 908, y: 1509 }, // Manual position. Should be used to all other stars, instead of FIXED_STAR_POSITIONS[]
+    position: { x: 908, y: 1509 },
     type: 'circuit',
     conqueredBy: 'crew-2',
   },
@@ -471,7 +400,7 @@ export const raceStars: RaceStar[] = [
     conqueredBy: 'crew-2',
   },
   {
-    id: 'star-46', //After this one, everything repeats (Except for star number)
+    id: 'star-46',
     name: 'Kings Park',
     position: { x: 1589, y: 1039},
     type: 'streetx',
